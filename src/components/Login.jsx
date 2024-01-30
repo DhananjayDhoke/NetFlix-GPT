@@ -32,14 +32,14 @@ const Login = () => {
             // Signed up 
             
             const user = userCredential.user;
-            console.log("inside crete user",user);
+            
             navigate("/browse")
             // ...
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log("first")
+          
             setErrorMessage(errorCode +" "+errorMessage)
           });
 
