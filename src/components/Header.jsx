@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../Redux/userSlice';
 import { LOGO, USER_AVATAR } from '../utils/constant';
+import { toggleGptSearchView } from '../Redux/gptSlice';
+import { PreferedLanguage } from '../utils/languageConstant';
 
 const Header = () => {
 
@@ -40,13 +42,21 @@ signOut(auth).then(() => {}).catch((error) => {
     return ()=> unsubscribe();
   },[])
 
+  const handelShowGptSearch = ()=>{
+    dispatch(toggleGptSearchView())
+  }
   return (
     
     <div className='absolute  p-2 w-screen bg-gradient-to-b from-black z-10 flex justify-between'>
         <img src={LOGO}
         className='w-44'
         alt="logo" />
-    {user && <div className='w-36 flex'>
+    {user && <div className='flex'>
+      <select name="" id="">
+        {PreferedLanguage.map((e)=> <option key={e.identifier} value={e.identifier}>{e.name}</option>)}
+      </select>
+     <button className='p-2 m-2 bg-purple-400 text-white'
+     onClick={handelShowGptSearch}>Gpt Search</button>
       <img src={USER_AVATAR}
       className='w-16'
       alt="sign out logo" />
